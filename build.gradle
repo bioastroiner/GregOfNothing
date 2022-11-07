@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+def gonv = "0.0.1"
+version = "1.12.2-" + gonv
+group = "gregofnothing"
+archivesBaseName = "Greg_Of_Nothing"
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+    mappings = "stable_39"
+    useDepAts = true
+    makeObfSourceJar = false
+    replace("@VERSION@", gonv)
+    replaceIn("Greg_Of_Nothing.java")
+}
+
+repositories {
+    maven {
+        name "CurseForge"
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        name "CraftTweaker"
+        url "https://maven.blamejared.com"
+    }
+}
+
+dependencies {
+
+    // Hard-Deps
+    //deobfCompile "curse.maven:gregtech-ce-unofficial-557242:3949406"
+    deobfCompile "curse.maven:codechicken-lib-1-8-242818:2779848"
+    deobfCompile "curse.maven:ex-nihilo-creatio-274456:2817545"
+    deobfCompile "curse.maven:shadowfacts-forgelin-248453:2785465"
+    //deobfCompile "curse.maven:mixin-booter-419286:3321174"
+
+    // Useful stuff
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
+    deobfCompile "curse.maven:jei-238222:3040523"
+    deobfCompile "curse.maven:jeid-296289:2919737"
+    runtime "curse.maven:the-one-probe-245211:2667280"
+
+    // Compat
+    deobfCompile "curse.maven:ctm-267602:2915363"
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+
+
+

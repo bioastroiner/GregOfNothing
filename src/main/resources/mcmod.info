@@ -1,0 +1,12 @@
+[{
+  "modid": "gregofnothing",
+  "name": "Greg Of Nothing",
+  "description": "Greg Ex Nehilo BS",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "logoFile": "",
+  "url": "",
+  "authorList": ["bio"],
+  "credits": "",
+  "dependencies": []
+}]
