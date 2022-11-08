@@ -1,8 +1,6 @@
 package gregofnothing.proxy;
 
 import gregofnothing.Greg_Of_Nothing;
-import gregofnothing.common.Items.MetaItems;
-import gregofnothing.common.Items.tools.MetaItem_Tools;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
@@ -25,7 +23,7 @@ public class CommonProxy {
     }
 
     public void preInit() {
-        MetaItems.init();
+
     }
 
     public void init() {

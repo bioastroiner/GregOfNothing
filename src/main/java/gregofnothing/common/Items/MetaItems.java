@@ -1,5 +1,6 @@
 package gregofnothing.common.Items;
 
+import gregofnothing.Greg_Of_Nothing;
 import gregofnothing.common.Items.tools.MetaItem_Tools;
 import gregtech.api.items.toolitem.ToolMetaItem;
 
@@ -14,8 +15,8 @@ public class MetaItems {
     public static ToolMetaItem<?>.MetaToolValueItem EX_HAMMER_LV;
 
     public static void init() {
-        MetaItem_Tools.instance = new MetaItem_Tools();
-        MetaItem_Tools.instance.setRegistryName("gon_meta_tool");
+        Greg_Of_Nothing.logger.info("Starting MetaItems registration");
+        MetaItem_Tools.init();
     }
 
 }

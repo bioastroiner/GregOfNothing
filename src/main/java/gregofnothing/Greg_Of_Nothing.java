@@ -1,7 +1,8 @@
 package gregofnothing;
 
-import gregofnothing.common.ModBlocks;
+import gregofnothing.common.Items.MetaItems;
 import gregofnothing.common.Items.ModItems;
+import gregofnothing.common.ModBlocks;
 import gregofnothing.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +21,7 @@ import static gregofnothing.Greg_Of_Nothing.*;
                 "after:exnihilocreatio;")
 public class Greg_Of_Nothing {
 
-    @Mod.Instance
+    @Mod.Instance("gregofnothing")
     public static Greg_Of_Nothing instance;
 
     public static final String MODID = "gregofnothing";
@@ -29,25 +30,32 @@ public class Greg_Of_Nothing {
 
     public static Logger logger = LogManager.getLogger("GREG_OF_NOTHING_LOGGER");
 
-    @SidedProxy(clientSide = "gregofnothing.proxy.ClientProxy", serverSide = "gregofnothing.proxy.CommonProxy")
+    @SidedProxy(
+            modId = "gregofnothing",
+            clientSide = "gregofnothing.proxy.ClientProxy",
+            serverSide = "gregofnothing.proxy.CommonProxy")
     static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ModItems.registerItems();
         ModBlocks.registerBlocks();
+        MetaItems.init();
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(this);
+        logger.info("GTN pre load finish");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init();
+        logger.info("GTN Initialization finish");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
+        logger.info("GTN PostInitialization finish");
     }
 }
 
