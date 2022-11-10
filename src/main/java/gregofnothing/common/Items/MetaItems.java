@@ -17,6 +17,7 @@ public class MetaItems {
     public static void init() {
         Greg_Of_Nothing.logger.info("Starting MetaItems registration");
         MetaItem_Tools.init();
+        OrePrefixItem.init();
     }
 
 }
